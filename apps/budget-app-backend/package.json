@@ -5,9 +5,9 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch --onSuccess \"node dist/index.cjs\"",
-    "start": "node dist/index.js",
-    "typecheck": "tsc --noEmit",
-    "test": "jest --detectOpenHandles"
+    "start": "NODE_ENV=production node dist/index.cjs",
+    "test": "jest --detectOpenHandles",
+    "typecheck": "tsc --noEmit"
   },
   "jest": {
     "preset": "./jest-preset.mjs"
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@jest/globals": "29.7.0",
+    "@repo/logger": "workspace:*",
     "@types/body-parser": "1.19.5",
     "@types/cors": "2.8.17",
     "@types/express": "4.17.17",

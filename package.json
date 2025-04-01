@@ -1,0 +1,33 @@
+{
+  "name": "repo",
+  "private": true,
+  "directories": {
+    "doc": "docs",
+    "apps": "apps",
+    "packages": "packages"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "pnpm -r run build",
+    "build:backend": "pnpm run --filter=budget-app-backend build",
+    "build:frontend": "pnpm run --filter=budget-app-frontend build",
+    "clean": "rm -rf **/dist **/build **/.react-router **/.bunchee",
+    "compose:dev": "docker compose -f docker-compose.dev.yml up",
+    "compose:prod": "docker compose -f docker-compose.prod.yml up",
+    "dev": "pnpm -r --filter=./apps/* run dev",
+    "dev:backend": "pnpm run --filter=budget-app-backend dev",
+    "dev:frontend": "pnpm run --filter=budget-app-frontend dev",
+    "prebuild": "pnpm clean",
+    "start": "pnpm -r --filter=./apps/* run start",
+    "start:backend": "pnpm run --filter=budget-app-backend start",
+    "start:frontend": "pnpm run --filter=budget-app-frontend start",
+    "test": "pnpm -r run test",
+    "typecheck": "pnpm -r run typecheck"
+  },
+  "devDependencies": {
+    "tsup": "8.4.0"
+  }
+}

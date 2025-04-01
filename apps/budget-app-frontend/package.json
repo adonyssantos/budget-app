@@ -4,10 +4,10 @@
   "type": "module",
   "scripts": {
     "build": "react-router build",
-    "dev": "react-router dev --host 0.0.0.0",
-    "start": "react-router-serve ./build/server/index.js --host 0.0.0.0",
-    "typecheck": "react-router typegen && tsc",
-    "test": "echo \"Error: test not implemented\" && exit 1"
+    "dev": "react-router dev --port 5001 --host 0.0.0.0",
+    "start": "PORT=5001 react-router-serve ./build/server/index.js --host 0.0.0.0",
+    "test": "echo \"Error: test not implemented\" && exit 1",
+    "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
     "@react-router/node": "7.4.1",
