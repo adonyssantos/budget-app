@@ -23,8 +23,6 @@ services:
     volumes:
       - ./:/app
       - /app/node_modules
-    depends_on:
-      - budget-app-db
     env_file:
       - ./apps/budget-app-backend/.env
   reverse-proxy:
@@ -33,7 +31,7 @@ services:
     volumes:
       - ./nginx.prod.conf:/etc/nginx/nginx.conf:ro
     ports:
-      - 7003:80
+      - 3001:80
     depends_on:
       - budget-app-frontend
       - budget-app-backend

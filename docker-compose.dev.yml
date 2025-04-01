@@ -10,9 +10,6 @@ services:
     volumes:
       - ./:/app
       - /app/node_modules
-    ports:
-      - 5000:5000
-      - 5001:5001
     depends_on:
       - budget-app-db
     command: ["pnpm", "dev"]
@@ -31,7 +28,7 @@ services:
     volumes:
       - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro
     ports:
-      - 5003:80
+      - 3000:80
     depends_on:
       - webapp
 
