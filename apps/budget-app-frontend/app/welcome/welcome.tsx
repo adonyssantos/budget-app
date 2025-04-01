@@ -1,7 +1,25 @@
+import { useEffect, useState } from "react";
 import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
 
 export function Welcome() {
+  const [status, setStatus] = useState();
+
+  useEffect(() => {
+    async function fetchStatus() {
+      console.log("fetching status");
+      try {
+        const response = await fetch("/api/status");
+        const data = await response.json();
+        setStatus(data);
+      } catch (error) {
+        console.error("Error fetching status:", error);
+      }
+    }
+
+    fetchStatus();
+  }, []);
+
   return (
     <main className="flex items-center justify-center pt-16 pb-4">
       <div className="flex-1 flex flex-col items-center gap-16 min-h-0">
@@ -23,6 +41,9 @@ export function Welcome() {
           <nav className="rounded-3xl border border-gray-200 p-6 dark:border-gray-700 space-y-4">
             <p className="leading-6 text-gray-700 dark:text-gray-200 text-center">
               Hello World
+            </p>
+            <p className="leading-6 text-gray-700 dark:text-gray-200 text-center">
+              Response: <code>{JSON.stringify(status)}</code>
             </p>
             <ul>
               {resources.map(({ href, text, icon }) => (

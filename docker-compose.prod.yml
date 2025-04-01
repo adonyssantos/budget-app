@@ -10,8 +10,6 @@ services:
     volumes:
       - ./:/app
       - /app/node_modules
-    ports:
-      - 7001:7001
     depends_on:
       - budget-app-backend
     env_file:
@@ -25,22 +23,17 @@ services:
     volumes:
       - ./:/app
       - /app/node_modules
-    ports:
-      - 7000:7000
     depends_on:
       - budget-app-db
     env_file:
       - ./apps/budget-app-backend/.env
-  # TODO: Remove this service because will use a real database for production
-  budget-app-db:
-    image: mongo:8.0.6
-    container_name: prod-budget-app-db
+  reverse-proxy:
+    image: nginx:stable-alpine3.20
+    container_name: prod-budget-app-reverse-proxy
     volumes:
-      - budget-app-db-data:/data/db
+      - ./nginx.prod.conf:/etc/nginx/nginx.conf:ro
     ports:
-      - 27018:27017
-    env_file:
-      - ./apps/budget-app-backend/.env
-
-volumes:
-  budget-app-db-data:
+      - 7003:80
+    depends_on:
+      - budget-app-frontend
+      - budget-app-backend

@@ -25,6 +25,15 @@ services:
       - 27017:27017
     env_file:
       - ./apps/budget-app-backend/.env
+  reverse-proxy:
+    image: nginx:stable-alpine3.20
+    container_name: dev-budget-app-reverse-proxy
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 5003:80
+    depends_on:
+      - webapp
 
 volumes:
   budget-app-db-data:
