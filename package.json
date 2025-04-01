@@ -11,6 +11,7 @@
     "packages/*"
   ],
   "scripts": {
+    "prebuild": "pnpm clean",
     "build": "pnpm -r run build",
     "build:backend": "pnpm run --filter=budget-app-backend build",
     "build:frontend": "pnpm run --filter=budget-app-frontend build",
@@ -20,7 +21,6 @@
     "dev": "pnpm -r --filter=./apps/* run dev",
     "dev:backend": "pnpm run --filter=budget-app-backend dev",
     "dev:frontend": "pnpm run --filter=budget-app-frontend dev",
-    "prebuild": "pnpm clean",
     "start": "pnpm -r --filter=./apps/* run start",
     "start:backend": "pnpm run --filter=budget-app-backend start",
     "start:frontend": "pnpm run --filter=budget-app-frontend start",
@@ -28,6 +28,15 @@
     "typecheck": "pnpm -r run typecheck"
   },
   "devDependencies": {
-    "tsup": "8.4.0"
+    "@jest/globals": "29.7.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "ts-jest": "^29.2.6",
+    "tsup": "8.4.0",
+    "typescript": "5.8.2"
+  },
+  "packageManager": "pnpm@10.7.0",
+  "engines": {
+    "node": "22.14.0"
   }
 }
