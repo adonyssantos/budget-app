@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch --onSuccess \"node dist/index.cjs\"",
-    "start": "NODE_ENV=production node dist/index.cjs",
+    "start": "NODE_ENV=production PORT=7000 node dist/index.cjs",
     "test": "jest --detectOpenHandles",
     "typecheck": "tsc --noEmit"
   },

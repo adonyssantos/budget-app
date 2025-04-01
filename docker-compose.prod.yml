@@ -1,3 +1,5 @@
+name: budget-app-prod
+
 services:
   budget-app-frontend:
     build:
@@ -9,10 +11,9 @@ services:
       - ./:/app
       - /app/node_modules
     ports:
-      - 5001:5001
+      - 7001:7001
     depends_on:
       - budget-app-backend
-      - budget-app-db
     env_file:
       - ./apps/budget-app-frontend/.env
   budget-app-backend:
@@ -25,18 +26,19 @@ services:
       - ./:/app
       - /app/node_modules
     ports:
-      - 5000:5000
+      - 7000:7000
     depends_on:
       - budget-app-db
     env_file:
       - ./apps/budget-app-backend/.env
+  # TODO: Remove this service because will use a real database for production
   budget-app-db:
     image: mongo:8.0.6
     container_name: prod-budget-app-db
     volumes:
       - budget-app-db-data:/data/db
     ports:
-      - 27017:27017
+      - 27018:27017
     env_file:
       - ./apps/budget-app-backend/.env
 

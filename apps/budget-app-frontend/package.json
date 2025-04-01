@@ -5,7 +5,7 @@
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev --port 5001 --host 0.0.0.0",
-    "start": "PORT=5001 react-router-serve ./build/server/index.js --host 0.0.0.0",
+    "start": "PORT=7001 react-router-serve ./build/server/index.js --host 0.0.0.0",
     "test": "echo \"Error: test not implemented\" && exit 1",
     "typecheck": "react-router typegen && tsc"
   },

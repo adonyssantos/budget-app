@@ -1,37 +1,21 @@
+name: budget-app-dev
+
 services:
-  budget-app-frontend:
+  webapp:
     build:
       context: .
       dockerfile: Dockerfile
       target: development-dependencies-env
-    container_name: dev-budget-app-frontend
+    container_name: dev-budget-app-webapp
     volumes:
-      - ./:/app/dev-budget-app-frontend
-      - /app/node_modules
-    ports:
-      - 5001:5001
-    depends_on:
-      - budget-app-backend
-      - budget-app-db
-    env_file:
-      - ./apps/budget-app-frontend/.env
-    command: ["pnpm", "dev:frontend"]
-  budget-app-backend:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: development-dependencies-env
-    container_name: dev-budget-app-backend
-    volumes:
-      - ./:/app/dev-budget-app-backend
+      - ./:/app
       - /app/node_modules
     ports:
       - 5000:5000
+      - 5001:5001
     depends_on:
       - budget-app-db
-    env_file:
-      - ./apps/budget-app-backend/.env
-    command: ["pnpm", "dev:backend"]
+    command: ["pnpm", "dev"]
   budget-app-db:
     image: mongo:8.0.6
     container_name: dev-budget-app-db
