@@ -1,0 +1,35 @@
+services:
+  budget-app-frontend:
+    build:
+      context: ./budget-app-frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./budget-app-frontend:/app
+      - /app/node_modules
+    ports:
+      - 5001:5173
+    depends_on:
+      - budget-app-backend
+      - budget-app-db
+    env_file:
+      - ./budget-app-frontend/.env
+  budget-app-backend:
+    build:
+      context: ./budget-app-backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./budget-app-backend:/app
+      - /app/node_modules
+    ports:
+      - 5000:5000
+    depends_on:
+      - budget-app-db
+    env_file:
+      - ./budget-app-backend/.env
+  budget-app-db:
+    image: mongo:8.0.6
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - 27017:27017
