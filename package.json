@@ -2,7 +2,7 @@
   "name": "repo",
   "private": true,
   "directories": {
-    "doc": "docs",
+    "docs": "docs",
     "apps": "apps",
     "packages": "packages"
   },
