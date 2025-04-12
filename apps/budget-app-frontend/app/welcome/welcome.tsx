@@ -10,7 +10,7 @@ export function Welcome() {
     async function fetchStatus() {
       console.log("fetching status");
       try {
-        const response = await fetch("/api/status");
+        const response = await fetch("/api/healthz");
         const data = await response.json();
         setStatus(data);
       } catch (error) {
